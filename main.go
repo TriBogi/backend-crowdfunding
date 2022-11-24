@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bogistartup/auth"
 	"bogistartup/handler"
 	"bogistartup/user"
 	"github.com/gin-gonic/gin"
@@ -18,10 +19,8 @@ func main() {
 	}
 	userRepository := user.NewRepository(db)
 	userService := user.NewService(userRepository)
-
-	userService.SaveAvatar(3, "images/1--profile.png")
-
-	userHandler := handler.NewUserHandler(userService)
+	authService := auth.NewService()
+	userHandler := handler.NewUserHandler(userService, authService)
 
 	router := gin.Default()
 	api := router.Group("/api/v1")
