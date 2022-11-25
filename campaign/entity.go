@@ -16,3 +16,12 @@ type Campaign struct {
 	Created_At        time.Time
 	Updated_At        time.Time
 }
+
+type CampaignImage struct {
+	ID          int
+	Campaign_ID int
+	File_Name   string
+	Is_Primary  int
+	Created_At  time.Time
+	Updated_At  time.Time
+}
