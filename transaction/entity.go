@@ -1,6 +1,9 @@
 package transaction
 
-import "time"
+import (
+	"bogistartup/user"
+	"time"
+)
 
 type Transaction struct {
 	ID          int
@@ -9,6 +12,7 @@ type Transaction struct {
 	Amount      int
 	Status      string
 	Code        string
+	User        user.User
 	Created_At  time.Time
 	Updated_At  time.Time
 }
