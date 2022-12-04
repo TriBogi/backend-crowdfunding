@@ -5,6 +5,7 @@ import (
 	"bogistartup/campaign"
 	"bogistartup/handler"
 	"bogistartup/helper"
+	"bogistartup/payment"
 	"bogistartup/transaction"
 	"bogistartup/user"
 	"github.com/dgrijalva/jwt-go"
@@ -29,17 +30,8 @@ func main() {
 	userService := user.NewService(userRepository)
 	campaignService := campaign.NewService(campaignRepository)
 	authService := auth.NewService()
-	transactionService := transaction.NewService(transactionRepository, campaignRepository)
-
-	user, _ := userService.GetUserByID(26)
-
-	input := transaction.CreateTransactionInput{
-		CampaignID: 9,
-		Amount:     5000000,
-		User:       user,
-	}
-	transactionService.CreateTransaction(input)
-
+	paymentService := payment.NewService()
+	transactionService := transaction.NewService(transactionRepository, campaignRepository, paymentService)
 	userHandler := handler.NewUserHandler(userService, authService)
 	campaignHandler := handler.NewCampaignHandler(campaignService)
 	transactionHandler := handler.NewTransactionHandler(transactionService)
