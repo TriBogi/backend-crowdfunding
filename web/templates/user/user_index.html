@@ -1,11 +1,14 @@
 {{ define "content" }}
 <h2 class="mb-4">List of User</h2>
 
+<a href="/users/new" class="btn btn-primary mb-3"><i class="fa fa-plus"></i> New User</a>
+
 <div class="card mb-4">
     <div class="card-body">
         <table class="table mb-0">
             <thead class="thead-light">
             <tr>
+                <th></th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Occupation</th>
@@ -14,6 +17,7 @@
             <tbody>
             {{ range .users }}
             <tr>
+                <td><img class="img-fluid img-thumbnail" src="{{ .Avatar_File_Name  }}" width="60"></td>
                 <td>{{ .Name }}</td>
                 <td>{{ .Email }}</td>
                 <td>{{ .Ocupation }}</td>
