@@ -4,6 +4,7 @@ import (
 	"bogistartup/user"
 	"github.com/gin-gonic/gin"
 	"net/http"
+	"strconv"
 )
 
 type userHandler struct {
@@ -53,5 +54,17 @@ func (h *userHandler) Create(c *gin.Context) {
 	}
 
 	c.Redirect(http.StatusFound, "/users")
+
+}
+
+func (h *userHandler) Edit(c *gin.Context) {
+	idParam := c.Param("id")
+	id, _ := strconv.Atoi(idParam)
+
+	registeredUser, err := h.userService.GetUserByID(id)
+	if err != nil {
+		c.HTML(http.StatusInternalServerError, "error.html", nil)
+	}
+	c.HTML(http.StatusOK, "user_edit.html", registeredUser)
 
 }
