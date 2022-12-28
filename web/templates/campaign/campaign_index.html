@@ -13,6 +13,9 @@
                 <th>Name</th>
                 <th>Short Description</th>
                 <th>Goal Amount</th>
+                <th></th>
+                <th></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -26,7 +29,9 @@
                 <td>{{ .Name }}</td>
                 <td>{{ .Short_Description }}</td>
                 <td>{{ .GoalAmountFormatIDR }}</td>
+                <td><a href="/campaigns/show/{{ .ID }}"><i class="fa fa-search"></i><a></td>
                 <td><a href="/campaigns/edit/{{ .ID }}"><i class="fa fa-edit"></i><a></td>
+                <td><a href="/campaigns/image/{{ .ID }}"><i class="fa fa-camera"></i><a></td>
             </tr>
             {{ end }}
             </tbody>
