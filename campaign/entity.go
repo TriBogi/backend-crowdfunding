@@ -2,6 +2,7 @@ package campaign
 
 import (
 	"bogistartup/user"
+	"github.com/leekchan/accounting"
 	"time"
 )
 
@@ -20,6 +21,16 @@ type Campaign struct {
 	Updated_At        time.Time
 	CampaignImages    []CampaignImage
 	User              user.User
+}
+
+func (c Campaign) GoalAmountFormatIDR() string {
+	ac := accounting.Accounting{Symbol: "Rp", Precision: 2, Thousand: ".", Decimal: ","}
+	return ac.FormatMoney(c.Goal_Amount)
+}
+
+func (c Campaign) CurrentAmountFormatIDR() string {
+	ac := accounting.Accounting{Symbol: "Rp", Precision: 2, Thousand: ".", Decimal: ","}
+	return ac.FormatMoney(c.Current_Amount)
 }
 
 type CampaignImage struct {
