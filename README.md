@@ -1,3 +1,3 @@
 # bogistartup
 
-Backend Crowdfunding with Golang 
+Backend Crowdfunding + CMS with Golang 
